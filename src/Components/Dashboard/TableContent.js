@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsFillTrashFill } from "react-icons/bs";
-
-const TableContent = ({ data, setEditBill }) => {
+import { useQuery } from "react-query";
+const TableContent = ({
+  setEditBill,
+  pagesCount,
+  setPagesCount,
+  pages,
+  setPages,
+  data,
+}) => {
   return (
     <div className="mt-5 px-2">
       <div class="overflow-x-auto">
         <table class="table table-compact w-full">
           <thead>
             <tr>
+              <th>SR</th>
               <th>Billing ID</th>
               <th>Full Name</th>
               <th>Email</th>
@@ -17,8 +25,9 @@ const TableContent = ({ data, setEditBill }) => {
             </tr>
           </thead>
           <tbody>
-            {data?.map((b) => (
+            {data?.map((b, index) => (
               <tr key={b?._id}>
+                <th>{index + 1 + pages * 10}</th>
                 <th>{b?._id}</th>
                 <td>{b?.name}</td>
                 <td>{b?.email}</td>
@@ -47,6 +56,18 @@ const TableContent = ({ data, setEditBill }) => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="w-[220px] mx-auto my-4">
+        <div class="btn-group">
+          {[...Array(pagesCount).keys()].map((num) => (
+            <button
+              className={pages === num ? "page-active" : "btn-page"}
+              onClick={() => setPages(num)}
+            >
+              {num}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../Assets/Images/logo.png";
 import TableContent from "./TableContent";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -8,12 +8,34 @@ import AddNewBillModal from "./AddNewBillModal";
 import DeleteBillModal from "./DeleteBillModal";
 const Dashboard = () => {
   const [editBill, setEditBill] = useState({});
-  const { data, refetch } = useQuery("bills", () =>
-    fetch("http://localhost:5000/api/billing-list").then((res) => res.json())
-  );
-  console.log(editBill, "broo");
+  const [data, setData] = useState([]);
+  // const { refetch } = useQuery("bills", () =>
+  //   fetch("http://localhost:5000/api/billing-list").then((res) => res.json())
+  // );
+  const [pagesCount, setPagesCount] = useState(0);
+  const [pages, setPages] = useState(0);
+  useEffect(() => {
+    fetch("http://localhost:5000/api/billing-pagination")
+      .then((res) => res.json())
+      .then((data) => {
+        const pages = Math.ceil(data?.count / 10);
+        setPagesCount(pages);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/billing-list?page=${pages}`)
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, [data]);
+  // const { data, refetch } = useQuery("bills", () =>
+  //   fetch(`http://localhost:5000/api/billing-list?page=${pages}`).then((res) =>
+  //     res.json()
+  //   )
+  // );
+
   return (
-    <div className="w-[96%] mx-auto my-4 shadow-lg h-[90vh] border-2">
+    <div className="w-[96%] mx-auto my-4 shadow-lg mini-h-[90vh] border-2">
       <div className="flex justify-between items-center bg-[#95a5a6]">
         <img className="w-[220px]" src={logo} alt="" />
         <p className="text-white text-xl pr-4">Total Paid : 1200$</p>
@@ -34,15 +56,24 @@ const Dashboard = () => {
           </label>
         </div>
       </div>
-      <TableContent data={data} setEditBill={setEditBill} />
+      <TableContent
+        pages={pages}
+        setPages={setPages}
+        pagesCount={pagesCount}
+        setPagesCount={setPagesCount}
+        data={data}
+        setEditBill={setEditBill}
+      />
       <EditBillModal
-        refetch={refetch}
+        // refetch={refetch}
         setEditBill={setEditBill}
         editBill={editBill}
       />
-      <AddNewBillModal refetch={refetch} />
+      <AddNewBillModal
+      // refetch={refetch}
+      />
       <DeleteBillModal
-        refetch={refetch}
+        // refetch={refetch}
         setEditBill={setEditBill}
         editBill={editBill}
       />

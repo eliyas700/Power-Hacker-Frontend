@@ -29,7 +29,7 @@ const EditBillModal = ({ editBill, refetch }) => {
         console.log(data);
         if (data.success) {
           toast.success(`${editBill?._id} Updated Successfully!`);
-          refetch();
+          // refetch();
           event.target.reset();
         } else {
           toast.error(`Sorry ! Something went wrong .Try Again`);

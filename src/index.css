@@ -27,3 +27,17 @@
 .btn-bill:hover {
     box-shadow: none;
 }
+
+.btn-page {
+    background: #192a56;
+    width: 30px;
+    color: white;
+    margin: 0 2px;
+}
+
+.page-active {
+    background: white;
+    width: 30px;
+    color: #192a56;
+    border: 1px solid #3e3e3e;
+}

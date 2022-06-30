@@ -23,7 +23,7 @@ const AddNewBillModal = ({ refetch }) => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success(`New Bill Added Successfully.`);
-          refetch();
+          // refetch();
           event.target.reset();
         } else {
           toast.error(`Sorry ! Something went wrong .Try Again`);
