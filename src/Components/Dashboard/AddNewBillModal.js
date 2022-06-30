@@ -1,13 +1,21 @@
 import React from "react";
 import logo from "../../Assets/Images/logo.png";
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
 const AddNewBillModal = ({ refetch }) => {
-  const handleAddBilling = (event) => {
-    event.preventDefault();
-    const name = event.target.name.value;
-    const email = event.target.email.value;
-    const phoneNumber = event.target.number.value;
-    const bill = event.target.bill.value;
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const onSubmit = (data, event) => {
+    const name = data?.name;
+    const email = data?.email;
+    const phoneNumber = data?.number;
+    const bill = data?.amount;
+    console.log(name, email, phoneNumber, bill);
+
     const billInfo = {
       name: name,
       email: email,
@@ -46,7 +54,7 @@ const AddNewBillModal = ({ refetch }) => {
             <h2 className="text-center text-xl font-bold my-2 uppercase">
               Add New Bill
             </h2>
-            <form
+            {/* <form
               onSubmit={handleAddBilling}
               className="flex flex-wrap justify-center mt-3"
             >
@@ -55,34 +63,141 @@ const AddNewBillModal = ({ refetch }) => {
                 type="text"
                 name="name"
                 placeholder="Customer Name"
-                className=" mb-3 border-2 mx-auto w-[90%] px-3 py-1 "
+                className="  border-2 mx-auto w-[90%] px-3 py-1 "
               />
               <input
                 required
                 type="email"
                 name="email"
                 placeholder="Type Customer Email"
-                className=" mb-3 border-2 mx-auto w-[90%] px-3 py-1 "
+                className="  border-2 mx-auto w-[90%] px-3 py-1 "
               />
               <input
                 required
                 type="number"
                 name="number"
                 placeholder="Contact Number"
-                className=" mb-3 border-2 mx-auto w-[90%] px-3 py-1 "
+                className="  border-2 mx-auto w-[90%] px-3 py-1 "
               />
               <input
                 required
                 type="number"
                 name="bill"
                 placeholder="Bill Amount $"
-                className=" mb-3 border-2 mx-auto w-[90%] px-3 py-1 "
+                className="  border-2 mx-auto w-[90%] px-3 py-1 "
               />
+              
+            </form> */}
+            <form
+              className="flex flex-wrap justify-center mt-3"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <div className="form-control w-[90%]">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="  border-2 mx-auto  px-3 py-1 w-[100%] "
+                  {...register("name", {
+                    required: {
+                      value: true,
+                      message: "Name is Required",
+                    },
+                  })}
+                />
+                <label className="label">
+                  {errors.name?.type === "required" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors.name.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+
+              <div className="form-control w-[90%]">
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  className=" w-[100%] border-2 mx-auto px-3 py-1 "
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "Email is Required",
+                    },
+                    pattern: {
+                      value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                      message: "Provide a valid Email",
+                    },
+                  })}
+                />
+                <label className="label">
+                  {errors.email?.type === "required" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors.email.message}
+                    </span>
+                  )}
+                  {errors.email?.type === "pattern" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors.email.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+              <div className="form-control w-[90%]">
+                <input
+                  type="number"
+                  placeholder="Contact Number"
+                  className="  border-2 mx-auto  px-3 py-1 w-[100%] "
+                  {...register("number", {
+                    required: {
+                      value: true,
+                      Length: 11,
+                      message: " Contact Number is Required",
+                    },
+                    Length: {
+                      value: 11,
+                      message: "Must be 11 characters ",
+                    },
+                  })}
+                />
+                <label className="label">
+                  {errors.number?.type === "required" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors?.number.message}
+                    </span>
+                  )}
+                  {errors?.number?.type === "minLength" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors?.number.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+              <div className="form-control w-[90%]">
+                <input
+                  type="number"
+                  placeholder="Paid Amount"
+                  className="  border-2 mx-auto  px-3 py-1 w-[100%] "
+                  {...register("amount", {
+                    required: {
+                      value: true,
+                      message: "Paid Amount is Required",
+                    },
+                  })}
+                />
+                <label className="label">
+                  {errors.amount?.type === "required" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors.amount.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+
               <button
                 type="submit"
-                className=" mb-3 border-2 mx-auto w-[90%] px-3 py-1 btn"
+                className="  border-2 mx-auto w-[90%] px-3 py-1 btn"
               >
-                <label htmlFor="addNewBill">Add Now</label>
+                Add Now
               </button>
             </form>
           </div>
