@@ -20,9 +20,9 @@ const Dashboard = () => {
           <button className="btn-sm btn ml-2">Search</button>
         </div>
         <div>
-          <button className="btn btn-sm ml-0 ">
+          <label for="addNewBill" class="btn modal-button btn-sm ml-0">
             <AiOutlinePlus size={14} /> Add New Bill
-          </button>
+          </label>
         </div>
       </div>
       <TableContent />

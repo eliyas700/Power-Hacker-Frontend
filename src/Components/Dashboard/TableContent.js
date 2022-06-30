@@ -2,7 +2,7 @@ import React from "react";
 import { BsFillTrashFill } from "react-icons/bs";
 const TableContent = () => {
   return (
-    <div className="mt-5">
+    <div className="mt-5 px-2">
       <div class="overflow-x-auto">
         <table class="table table-compact w-full">
           <thead>
