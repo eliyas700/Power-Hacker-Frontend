@@ -7,6 +7,8 @@ import AddNewBillModal from "./Components/Dashboard/AddNewBillModal";
 import EditBillModal from "./Components/Dashboard/EditBillModal";
 import Footer from "./Components/Footer/Footer";
 import Homepage from "./Components/Homepage/Homepage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <div>
@@ -20,6 +22,7 @@ function App() {
       <Login />
       <AddNewBillModal />
       <EditBillModal />
+      <ToastContainer />
     </div>
   );
 }
