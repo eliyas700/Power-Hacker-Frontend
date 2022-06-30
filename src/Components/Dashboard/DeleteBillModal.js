@@ -7,7 +7,7 @@ const DeleteBillModal = ({ refetch, editBill }) => {
     });
     const result = await res.json();
     if (result?.success) {
-      refetch();
+      // refetch();
       toast.success(result?.message);
     } else {
       toast.error(result?.error);

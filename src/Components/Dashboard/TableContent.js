@@ -25,35 +25,38 @@ const TableContent = ({
             </tr>
           </thead>
           <tbody>
-            {data?.map((b, index) => (
-              <tr key={b?._id}>
-                <th>{index + 1 + pages * 10}</th>
-                <th>{b?._id}</th>
-                <td>{b?.name}</td>
-                <td>{b?.email}</td>
-                <td>{b?.phone}</td>
-                <td>{b?.bill}</td>
-                <td className="flex justify-between">
-                  <div className="flex w-[140px] justify-between ">
-                    <label
-                      for="editBill"
-                      onClick={() => setEditBill(b)}
-                      class="btn modal-button btn-sm w-[60px] px-2 py-1 border-2 rounded-md bg-green-600 text-white text-normal "
-                    >
-                      Edit
-                    </label>
+            {data
+              ?.slice(0)
+              .reverse()
+              .map((b, index) => (
+                <tr key={b?._id}>
+                  <th>{index + 1 + pages * 10}</th>
+                  <th>{b?._id}</th>
+                  <td>{b?.name}</td>
+                  <td>{b?.email}</td>
+                  <td>{b?.phone}</td>
+                  <td>{b?.bill}</td>
+                  <td className="flex justify-between">
+                    <div className="flex w-[140px] justify-between ">
+                      <label
+                        for="editBill"
+                        onClick={() => setEditBill(b)}
+                        class="btn modal-button btn-sm w-[60px] px-2 py-1 border-2 rounded-md bg-green-600 text-white text-normal "
+                      >
+                        Edit
+                      </label>
 
-                    <label
-                      for="deleteBilling"
-                      onClick={() => setEditBill(b)}
-                      className="w-[60px] px-2 py-1 border-2 rounded-md bg-red-600 flex justify-center items-center"
-                    >
-                      <BsFillTrashFill size={18} color="white" />
-                    </label>
-                  </div>
-                </td>
-              </tr>
-            ))}
+                      <label
+                        for="deleteBilling"
+                        onClick={() => setEditBill(b)}
+                        className="w-[60px] px-2 py-1 border-2 rounded-md bg-red-600 flex justify-center items-center"
+                      >
+                        <BsFillTrashFill size={18} color="white" />
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
