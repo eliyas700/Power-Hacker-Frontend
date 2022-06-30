@@ -15,7 +15,7 @@ const Header = () => {
         <Link to="/contact">Contact Us</Link>
       </li>
       <li className="text-lg font-semibold text-white">
-        <span to="/login">Log In</span>
+        <label for="signInModal">Log In</label>
       </li>
     </>
   );
