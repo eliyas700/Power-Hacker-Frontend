@@ -39,9 +39,6 @@ function App() {
       </Routes>
       <Footer></Footer>
       <Login />
-      <AddNewBillModal />
-      <EditBillModal />
-      <ToastContainer />
     </div>
   );
 }

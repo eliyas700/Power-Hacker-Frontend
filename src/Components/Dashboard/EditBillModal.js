@@ -28,9 +28,10 @@ const EditBillModal = ({ editBill, refetch }) => {
       .then((data) => console.log("Success", data));
     refetch();
     toast.success(`${editBill._id} Updated Successfully!`);
+    refetch();
     event.target.reset();
   };
-
+  console.log(editBill);
   return (
     <div>
       <div className="w-[180px]">

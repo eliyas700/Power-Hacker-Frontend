@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BsFillTrashFill } from "react-icons/bs";
 
 const TableContent = ({ data, setEditBill }) => {
@@ -28,16 +28,19 @@ const TableContent = ({ data, setEditBill }) => {
                   <div className="flex w-[140px] justify-between ">
                     <label
                       for="editBill"
+                      onClick={() => setEditBill(b)}
                       class="btn modal-button btn-sm w-[60px] px-2 py-1 border-2 rounded-md bg-green-600 text-white text-normal "
                     >
                       Edit
                     </label>
-                    <button
-                      onClick={setEditBill(b)}
+
+                    <label
+                      for="deleteBilling"
+                      onClick={() => setEditBill(b)}
                       className="w-[60px] px-2 py-1 border-2 rounded-md bg-red-600 flex justify-center items-center"
                     >
                       <BsFillTrashFill size={18} color="white" />
-                    </button>
+                    </label>
                   </div>
                 </td>
               </tr>

@@ -5,12 +5,13 @@ import { AiOutlinePlus } from "react-icons/ai";
 import EditBillModal from "./EditBillModal";
 import { useQuery } from "react-query";
 import AddNewBillModal from "./AddNewBillModal";
+import DeleteBillModal from "./DeleteBillModal";
 const Dashboard = () => {
   const [editBill, setEditBill] = useState({});
   const { data, refetch } = useQuery("bills", () =>
     fetch("http://localhost:5000/api/billing-list").then((res) => res.json())
   );
-
+  console.log(editBill, "broo");
   return (
     <div className="w-[96%] mx-auto my-4 shadow-lg h-[90vh] border-2">
       <div className="flex justify-between items-center bg-[#95a5a6]">
@@ -40,6 +41,11 @@ const Dashboard = () => {
         editBill={editBill}
       />
       <AddNewBillModal refetch={refetch} />
+      <DeleteBillModal
+        refetch={refetch}
+        setEditBill={setEditBill}
+        editBill={editBill}
+      />
     </div>
   );
 };
