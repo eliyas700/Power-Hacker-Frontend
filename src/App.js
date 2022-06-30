@@ -11,7 +11,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { Suspense } from "react";
-import Loading from "./Components/Shared/Loading";
+
 function App() {
   const client = new QueryClient(
     //For React Suspense
@@ -39,6 +39,7 @@ function App() {
       </Routes>
       <Footer></Footer>
       <Login />
+      <ToastContainer />
     </div>
   );
 }

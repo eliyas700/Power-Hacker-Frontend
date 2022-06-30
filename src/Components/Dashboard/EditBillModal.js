@@ -25,13 +25,18 @@ const EditBillModal = ({ editBill, refetch }) => {
       body: JSON.stringify(billInfo),
     })
       .then((res) => res.json())
-      .then((data) => console.log("Success", data));
-    refetch();
-    toast.success(`${editBill._id} Updated Successfully!`);
-    refetch();
-    event.target.reset();
+      .then((data) => {
+        console.log(data);
+        if (data.success) {
+          toast.success(`${editBill?._id} Updated Successfully!`);
+          refetch();
+          event.target.reset();
+        } else {
+          toast.error(`Sorry ! Something went wrong .Try Again`);
+        }
+      });
   };
-  console.log(editBill);
+
   return (
     <div>
       <div className="w-[180px]">

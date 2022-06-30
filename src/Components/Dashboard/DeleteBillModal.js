@@ -26,12 +26,13 @@ const DeleteBillModal = ({ refetch, editBill }) => {
               Please note That deleting Bill Info won't be back!
             </p>
             <div className="modal-action">
-              <button
+              <label
+                htmlFor="deleteBilling"
                 onClick={() => handleDelete(editBill._id)}
                 className="btn btn-xs btn-error"
               >
                 Confirm
-              </button>
+              </label>
               <label htmlFor="deleteBilling" className="btn btn-xs">
                 Close
               </label>

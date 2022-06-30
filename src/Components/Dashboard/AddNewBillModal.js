@@ -82,7 +82,7 @@ const AddNewBillModal = ({ refetch }) => {
                 type="submit"
                 className=" mb-3 border-2 mx-auto w-[90%] px-3 py-1 btn"
               >
-                Add Now
+                <label htmlFor="addNewBill">Add Now</label>
               </button>
             </form>
           </div>
