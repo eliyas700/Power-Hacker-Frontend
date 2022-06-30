@@ -1,20 +1,21 @@
 import React from "react";
 import logo from "../../Assets/Images/logo.png";
+import { Link } from "react-router-dom";
 const Header = () => {
   const menuItems = (
     <>
       <li className="text-lg  font-semibold text-white">
-        <span>Home</span>
+        <Link to="/">Home</Link>
       </li>
       <li className="text-lg font-semibold text-white" tabIndex="0">
-        <span to="/blog">Dashboard</span>
+        <Link to="/dashboard">Dashboard</Link>
       </li>
 
       <li className="text-lg font-semibold text-white">
-        <span to="/contact">Contact Us</span>
+        <Link to="/contact">Contact Us</Link>
       </li>
       <li className="text-lg font-semibold text-white">
-        <span to="/myPortfolio">Log In</span>
+        <span to="/login">Log In</span>
       </li>
     </>
   );
