@@ -1,5 +1,7 @@
 import React from "react";
 import logo from "../../Assets/Images/logo.png";
+import TableContent from "./TableContent";
+import { AiOutlinePlus } from "react-icons/ai";
 const Dashboard = () => {
   return (
     <div className="w-[96%] mx-auto my-4 shadow-lg h-[90vh] border-2">
@@ -18,9 +20,12 @@ const Dashboard = () => {
           <button className="btn-sm btn ml-2">Search</button>
         </div>
         <div>
-          <button className="btn btn-sm ml-0 ">Add New Bill</button>
+          <button className="btn btn-sm ml-0 ">
+            <AiOutlinePlus size={14} /> Add New Bill
+          </button>
         </div>
       </div>
+      <TableContent />
     </div>
   );
 };
