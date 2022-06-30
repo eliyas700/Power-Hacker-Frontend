@@ -29,9 +29,11 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            <Suspense fallback={<h1>Loading ...</h1>}>
-              <Dashboard />
-            </Suspense>
+            <QueryClientProvider client={client}>
+              <Suspense fallback={<h1>Loading ...</h1>}>
+                <Dashboard />
+              </Suspense>
+            </QueryClientProvider>
           }
         ></Route>
       </Routes>

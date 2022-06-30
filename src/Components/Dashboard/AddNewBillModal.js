@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../Assets/Images/logo.png";
 import { toast } from "react-toastify";
-const AddNewBillModal = () => {
+const AddNewBillModal = ({ refetch }) => {
   const handleAddBilling = (event) => {
     event.preventDefault();
     const name = event.target.name.value;
@@ -22,7 +22,8 @@ const AddNewBillModal = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          toast.success(`Thank You For your Feedback`);
+          toast.success(`New Bill Added Successfully.`);
+          refetch();
           event.target.reset();
         } else {
           toast.error(`Sorry ! Something went wrong .Try Again`);

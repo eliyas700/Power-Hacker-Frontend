@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../Assets/Images/logo.png";
 import TableContent from "./TableContent";
 import { AiOutlinePlus } from "react-icons/ai";
-
+import EditBillModal from "./EditBillModal";
+import { useQuery } from "react-query";
+import AddNewBillModal from "./AddNewBillModal";
 const Dashboard = () => {
+  const [editBill, setEditBill] = useState({});
+  const { data, refetch } = useQuery("bills", () =>
+    fetch("http://localhost:5000/api/billing-list").then((res) => res.json())
+  );
+
   return (
     <div className="w-[96%] mx-auto my-4 shadow-lg h-[90vh] border-2">
       <div className="flex justify-between items-center bg-[#95a5a6]">
@@ -26,7 +33,13 @@ const Dashboard = () => {
           </label>
         </div>
       </div>
-      <TableContent />
+      <TableContent data={data} setEditBill={setEditBill} />
+      <EditBillModal
+        refetch={refetch}
+        setEditBill={setEditBill}
+        editBill={editBill}
+      />
+      <AddNewBillModal refetch={refetch} />
     </div>
   );
 };

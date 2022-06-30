@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BsFillTrashFill } from "react-icons/bs";
-import { useQuery } from "react-query";
-import getBillings from "../Hooks/getBillings";
-const TableContent = () => {
-  const [bills, setBills] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:5000/api/billing-list")
-      .then((res) => res.json())
-      .then((data) => {
-        setBills(data);
-      });
-  }, [bills]);
 
+const TableContent = ({ data, setEditBill }) => {
   return (
     <div className="mt-5 px-2">
       <div class="overflow-x-auto">
@@ -27,7 +17,7 @@ const TableContent = () => {
             </tr>
           </thead>
           <tbody>
-            {bills?.map((b) => (
+            {data?.map((b) => (
               <tr key={b?._id}>
                 <th>{b?._id}</th>
                 <td>{b?.name}</td>
@@ -42,7 +32,10 @@ const TableContent = () => {
                     >
                       Edit
                     </label>
-                    <button className="w-[60px] px-2 py-1 border-2 rounded-md bg-red-600 flex justify-center items-center">
+                    <button
+                      onClick={setEditBill(b)}
+                      className="w-[60px] px-2 py-1 border-2 rounded-md bg-red-600 flex justify-center items-center"
+                    >
                       <BsFillTrashFill size={18} color="white" />
                     </button>
                   </div>
