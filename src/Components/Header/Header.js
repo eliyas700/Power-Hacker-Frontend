@@ -23,9 +23,12 @@ const Header = () => {
     <>
       <div className="flex justify-between sticky top-0 z-50 px-3 bg-[#192a56] py-2">
         <div className="navbar-start">
-          <span className="btn btn-ghost normal-case text-[18px] font-sans">
-            <img width={180} src={logo} alt="Reyco-Automotive" />
-          </span>
+          <Link
+            to="/"
+            className="btn btn-ghost normal-case text-[18px] font-sans"
+          >
+            <img width={180} src={logo} alt="Power Hacker" />
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">{menuItems}</ul>

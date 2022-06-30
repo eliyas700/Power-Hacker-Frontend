@@ -4,16 +4,22 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./Components/Authentication/Login";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import AddNewBillModal from "./Components/Dashboard/AddNewBillModal";
+import EditBillModal from "./Components/Dashboard/EditBillModal";
+import Footer from "./Components/Footer/Footer";
+import Homepage from "./Components/Homepage/Homepage";
 function App() {
   return (
     <div>
       <Header />
       <Routes>
+        <Route path="/" element={<Homepage />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route>
       </Routes>
+      <Footer></Footer>
       <Login />
       <AddNewBillModal />
+      <EditBillModal />
     </div>
   );
 }

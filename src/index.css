@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.homepage {
+    background-image: url("https://i.ibb.co/6s3hMjp/34820.jpg") no-repeat center;
+    /* background-color: #000; */
+}
+
+.btn-bill {
+    width: 150px;
+    height: 45px;
+    text-align: center;
+    font-size: 16px;
+    color: azure;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1px solid black;
+    background-color: #192a56;
+    box-shadow: 10px 10px 30px #3e3e3e;
+    position: absolute;
+    top: 68%;
+    left: 45%;
+    transition: 0.5s ease-in-out;
+}
+
+.btn-bill:hover {
+    box-shadow: none;
+}

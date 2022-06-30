@@ -24,9 +24,12 @@ const TableContent = () => {
               <td>1200</td>
               <td className="flex justify-between">
                 <div className="flex w-[140px] justify-between ">
-                  <button className="w-[60px] px-2 py-1 border-2 rounded-md bg-green-600 text-white text-normal ">
+                  <label
+                    for="editBill"
+                    class="btn modal-button btn-sm w-[60px] px-2 py-1 border-2 rounded-md bg-green-600 text-white text-normal "
+                  >
                     Edit
-                  </button>
+                  </label>
                   <button className="w-[60px] px-2 py-1 border-2 rounded-md bg-red-600 flex justify-center items-center">
                     <BsFillTrashFill size={18} color="white" />
                   </button>
