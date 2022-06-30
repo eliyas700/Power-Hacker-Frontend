@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsFillTrashFill } from "react-icons/bs";
+import { useQuery } from "react-query";
+import getBillings from "../Hooks/getBillings";
 const TableContent = () => {
+  const [bills, setBills] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/api/billing-list")
+      .then((res) => res.json())
+      .then((data) => {
+        setBills(data);
+      });
+  }, [bills]);
+
   return (
     <div className="mt-5 px-2">
       <div class="overflow-x-auto">
@@ -16,26 +27,28 @@ const TableContent = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>1343</th>
-              <td>Eliyas Hossain</td>
-              <td>eliyashossain700@gmail.com</td>
-              <td>01862450175</td>
-              <td>1200</td>
-              <td className="flex justify-between">
-                <div className="flex w-[140px] justify-between ">
-                  <label
-                    for="editBill"
-                    class="btn modal-button btn-sm w-[60px] px-2 py-1 border-2 rounded-md bg-green-600 text-white text-normal "
-                  >
-                    Edit
-                  </label>
-                  <button className="w-[60px] px-2 py-1 border-2 rounded-md bg-red-600 flex justify-center items-center">
-                    <BsFillTrashFill size={18} color="white" />
-                  </button>
-                </div>
-              </td>
-            </tr>
+            {bills?.map((b) => (
+              <tr key={b?._id}>
+                <th>{b?._id}</th>
+                <td>{b?.name}</td>
+                <td>{b?.email}</td>
+                <td>{b?.phone}</td>
+                <td>{b?.bill}</td>
+                <td className="flex justify-between">
+                  <div className="flex w-[140px] justify-between ">
+                    <label
+                      for="editBill"
+                      class="btn modal-button btn-sm w-[60px] px-2 py-1 border-2 rounded-md bg-green-600 text-white text-normal "
+                    >
+                      Edit
+                    </label>
+                    <button className="w-[60px] px-2 py-1 border-2 rounded-md bg-red-600 flex justify-center items-center">
+                      <BsFillTrashFill size={18} color="white" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

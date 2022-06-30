@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../../Assets/Images/logo.png";
 import TableContent from "./TableContent";
 import { AiOutlinePlus } from "react-icons/ai";
+
 const Dashboard = () => {
   return (
     <div className="w-[96%] mx-auto my-4 shadow-lg h-[90vh] border-2">
