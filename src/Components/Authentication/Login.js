@@ -1,9 +1,45 @@
 import React, { useState } from "react";
 import Signup from "./Signup";
-
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 const Login = () => {
   const [signUp, setSignUp] = useState(false);
   const [signIn, setSignIn] = useState(true);
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+  const onSubmit = (data, event) => {
+    const name = data?.name;
+    const email = data?.email;
+    const phoneNumber = data?.number;
+    const bill = data?.amount;
+    console.log(name, email, phoneNumber, bill);
+
+    const billInfo = {
+      name: name,
+      email: email,
+      phone: phoneNumber,
+      bill: bill,
+    };
+    fetch("http://localhost:5000/api/add-billing", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(billInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success(`New Bill Added Successfully.`);
+          // refetch();
+          event.target.reset();
+        } else {
+          toast.error(`Sorry ! Something went wrong .Try Again`);
+        }
+      });
+  };
   return (
     <div>
       <div>
@@ -24,19 +60,69 @@ const Login = () => {
                       login
                     </h2>
                     <div className="w-[60px] h-[2px] bg-success mx-auto mb-10"></div>
-                    <form className="flex  flex-wrap justify-between items-center mx-auto">
-                      <input
-                        type="email"
-                        name="email"
-                        placeholder="Enter E-mail Id/Phone number"
-                        className="w-[100%] block p-[10px] border-[1px] border-solid border-[#9A9A9A] h-[40px]  mb-5 rounded-xl"
-                      />
-                      <input
-                        type="password"
-                        name="password"
-                        placeholder="Enter Password"
-                        className=" w-[100%] p-[10px] border-[1px] border-solid border-[#9A9A9A] h-[40px] mb-5 rounded-xl"
-                      />
+                    <form
+                      className="flex  flex-wrap justify-between items-center mx-auto"
+                      onSubmit={handleSubmit(onSubmit)}
+                    >
+                      <div className="form-control w-[100%]">
+                        <input
+                          type="email"
+                          placeholder="Your Email"
+                          className="w-[100%] block p-[10px] border-[1px] border-solid border-[#9A9A9A] h-[40px]  mb-3 rounded-xl"
+                          {...register("email", {
+                            required: {
+                              value: true,
+                              message: "Email is Required",
+                            },
+                            pattern: {
+                              value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                              message: "Provide a valid Email",
+                            },
+                          })}
+                        />
+                        <label className="label">
+                          {errors.email?.type === "required" && (
+                            <span className="label-text-alt text-red-500">
+                              {errors.email.message}
+                            </span>
+                          )}
+                          {errors.email?.type === "pattern" && (
+                            <span className="label-text-alt text-red-500">
+                              {errors.email.message}
+                            </span>
+                          )}
+                        </label>
+                      </div>
+
+                      <div className="form-control w-[100%]">
+                        <input
+                          type="password"
+                          placeholder="Your Password"
+                          className="w-[100%] block p-[10px] border-[1px] border-solid border-[#9A9A9A] h-[40px]  mb-3 rounded-xl"
+                          {...register("password", {
+                            required: {
+                              value: true,
+                              message: "You Must Provide a Password",
+                            },
+                            minLength: {
+                              value: 6,
+                              message: "Must be 6 characters or longer",
+                            },
+                          })}
+                        />
+                        <label className="label">
+                          {errors.password?.type === "required" && (
+                            <span className="label-text-alt text-red-500">
+                              {errors.password.message}
+                            </span>
+                          )}
+                          {errors.password?.type === "minLength" && (
+                            <span className="label-text-alt text-red-500">
+                              {errors.password.message}
+                            </span>
+                          )}
+                        </label>
+                      </div>
 
                       <button
                         type="submit"
