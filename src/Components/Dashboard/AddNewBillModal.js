@@ -36,7 +36,7 @@ const AddNewBillModal = ({ refetch }) => {
           // refetch();
           event.target.reset();
         } else {
-          toast.error(`Sorry ! Something went wrong .Try Again`);
+          toast.error(`Sorry ! Something went wrong .Try login Again`);
         }
       });
   };

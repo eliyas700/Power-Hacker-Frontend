@@ -20,7 +20,7 @@ const Login = () => {
   const onSubmit = (data, event) => {
     const email = data?.email;
     const password = data?.password;
-    console.log(password, email);
+
     const user = { email, password };
 
     fetch(`https://arrogant-inukshuk-10910.herokuapp.com/login`, {
