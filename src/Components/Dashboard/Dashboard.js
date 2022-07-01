@@ -36,6 +36,18 @@ const Dashboard = () => {
     });
   }
   console.log(sum);
+
+  const [search, setSearch] = useState("");
+
+  const searchedItem = (data) => {
+    return data.filter(
+      (item) =>
+        item.name.toLowerCase().includes(search) ||
+        item.email.toLowerCase().includes(search) ||
+        item.phone.toLowerCase().includes(search)
+    );
+  };
+  console.log(search);
   return (
     <div className="w-[96%] mx-auto my-4 shadow-lg mini-h-[90vh] border-2">
       <div className="flex justify-between items-center bg-[#95a5a6]">
@@ -48,9 +60,9 @@ const Dashboard = () => {
           <input
             type="text"
             placeholder="Search"
+            onChange={(e) => setSearch(e.target.value)}
             className="w-[150px] px-2 border-2 py-[2px]"
           />
-          <button className="btn-sm btn ml-2">Search</button>
         </div>
         <div>
           <label for="addNewBill" class="btn modal-button btn-sm ml-0">
@@ -63,7 +75,7 @@ const Dashboard = () => {
         setPages={setPages}
         pagesCount={pagesCount}
         setPagesCount={setPagesCount}
-        data={data}
+        data={searchedItem(data)}
         setEditBill={setEditBill}
       />
       <EditBillModal
