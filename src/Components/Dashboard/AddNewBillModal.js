@@ -24,7 +24,10 @@ const AddNewBillModal = ({ refetch }) => {
     };
     fetch("http://localhost:5000/api/add-billing", {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
       body: JSON.stringify(billInfo),
     })
       .then((res) => res.json())
@@ -150,10 +153,9 @@ const AddNewBillModal = ({ refetch }) => {
                   {...register("number", {
                     required: {
                       value: true,
-                      Length: 11,
                       message: " Contact Number is Required",
                     },
-                    Length: {
+                    minLength: {
                       value: 11,
                       message: "Must be 11 characters ",
                     },

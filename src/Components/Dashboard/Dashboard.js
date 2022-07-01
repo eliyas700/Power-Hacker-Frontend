@@ -21,7 +21,7 @@ const Dashboard = () => {
         const pages = Math.ceil(data?.count / 10);
         setPagesCount(pages);
       });
-  }, []);
+  }, [pages]);
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/billing-list?page=${pages}`)

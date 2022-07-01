@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import Signup from "./Signup";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import useToken from "../Hooks/useTokens";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [signUp, setSignUp] = useState(false);
   const [signIn, setSignIn] = useState(true);
-
+  const [user, setUser] = useState(null);
+  useToken(user);
+  console.log(user, useToken);
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -26,7 +31,14 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        if (data.msg === "Login success") {
+          toast.success("Logged In Successfully");
+          setUser(user);
+          event.target.reset();
+          navigate("/dashboard");
+        } else {
+          toast.error("Please Check your Email / Password");
+        }
       });
   };
   return (

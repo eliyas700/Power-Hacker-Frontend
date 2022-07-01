@@ -11,6 +11,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { Suspense } from "react";
+import RequireAuth from "./Components/Authentication/RequireAuth";
+import RequiredToken from "./Components/Authentication/RequiredToken";
+import NotFound from "./Components/NotFound/NotFound";
 
 function App() {
   const client = new QueryClient(
@@ -26,16 +29,20 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/requireToken" element={<RequiredToken />}></Route>
         <Route
           path="/dashboard"
           element={
-            <QueryClientProvider client={client}>
-              <Suspense fallback={<h1>Loading ...</h1>}>
-                <Dashboard />
-              </Suspense>
-            </QueryClientProvider>
+            <RequireAuth>
+              <QueryClientProvider client={client}>
+                <Suspense fallback={<h1>Loading ...</h1>}>
+                  <Dashboard />
+                </Suspense>
+              </QueryClientProvider>
+            </RequireAuth>
           }
         ></Route>
+        <Route path="/*" element={<NotFound />}></Route>
       </Routes>
       <Footer></Footer>
       <Login />
