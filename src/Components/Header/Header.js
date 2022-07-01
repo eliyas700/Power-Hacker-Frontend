@@ -24,9 +24,6 @@ const Header = () => {
         <Link to="/dashboard">Dashboard</Link>
       </li>
 
-      <li className="text-lg font-semibold text-white">
-        <Link to="/contact">Contact Us</Link>
-      </li>
       {haveToken ? (
         <li className="text-lg font-semibold text-white">
           <button onClick={handleSignOut}>Sign Out</button>
