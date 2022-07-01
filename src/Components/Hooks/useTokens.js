@@ -22,7 +22,7 @@ const useToken = (user) => {
           setToken(accessToken);
         });
     }
-  }, [user]);
+  }, [user, token]);
   return [token];
 };
 export default useToken;

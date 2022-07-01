@@ -10,10 +10,6 @@ const RequiredToken = () => {
       <p className="text-green-600 text-xl text-center  ">
         Please Login/ SignUp
       </p>
-      <button className="btn btn-link underline text-center mx-auto block ">
-        <label for="signInModal"> LogIn / Sign Up</label>
-      </button>
-      <Login />
     </div>
   );
 };

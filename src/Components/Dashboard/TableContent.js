@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BsFillTrashFill } from "react-icons/bs";
-import { useQuery } from "react-query";
+
 const TableContent = ({
   setEditBill,
   pagesCount,

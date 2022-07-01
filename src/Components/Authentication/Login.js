@@ -3,14 +3,15 @@ import Signup from "./Signup";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import useToken from "../Hooks/useTokens";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 const Login = () => {
   const [signUp, setSignUp] = useState(false);
   const [signIn, setSignIn] = useState(true);
   const [user, setUser] = useState(null);
   useToken(user);
-  console.log(user, useToken);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const {
     register,
     formState: { errors },
@@ -35,7 +36,7 @@ const Login = () => {
           toast.success("Logged In Successfully");
           setUser(user);
           event.target.reset();
-          navigate("/dashboard");
+          navigate(from, { replace: true });
         } else {
           toast.error("Please Check your Email / Password");
         }

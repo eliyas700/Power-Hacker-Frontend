@@ -9,9 +9,7 @@ import DeleteBillModal from "./DeleteBillModal";
 const Dashboard = () => {
   const [editBill, setEditBill] = useState({});
   const [data, setData] = useState([]);
-  // const { refetch } = useQuery("bills", () =>
-  //   fetch("http://localhost:5000/api/billing-list").then((res) => res.json())
-  // );
+
   const [pagesCount, setPagesCount] = useState(0);
   const [pages, setPages] = useState(0);
   useEffect(() => {
@@ -21,24 +19,28 @@ const Dashboard = () => {
         const pages = Math.ceil(data?.count / 10);
         setPagesCount(pages);
       });
-  }, [pages]);
+  }, [pages, data]);
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/billing-list?page=${pages}`)
       .then((res) => res.json())
       .then((data) => setData(data));
-  }, [data]);
-  // const { data, refetch } = useQuery("bills", () =>
-  //   fetch(`http://localhost:5000/api/billing-list?page=${pages}`).then((res) =>
-  //     res.json()
-  //   )
-  // );
+  }, [data, pages]);
+  console.log(data, "data from dashboard");
 
+  let sum = 0;
+
+  {
+    data?.forEach((element) => {
+      sum += parseInt(element?.bill);
+    });
+  }
+  console.log(sum);
   return (
     <div className="w-[96%] mx-auto my-4 shadow-lg mini-h-[90vh] border-2">
       <div className="flex justify-between items-center bg-[#95a5a6]">
         <img className="w-[220px]" src={logo} alt="" />
-        <p className="text-white text-xl pr-4">Total Paid : 1200$</p>
+        <p className="text-white text-xl pr-4">Total Paid : {sum}$</p>
       </div>
       <div className="flex justify-between items-center mt-8 px-4 w-[100%]">
         <div className="flex items-center">

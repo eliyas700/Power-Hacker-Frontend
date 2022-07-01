@@ -13,6 +13,7 @@ const DeleteBillModal = ({ refetch, editBill }) => {
       toast.error(result?.error);
     }
   };
+
   return (
     <div>
       <div>

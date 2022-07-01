@@ -33,13 +33,13 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            <RequireAuth>
-              <QueryClientProvider client={client}>
-                <Suspense fallback={<h1>Loading ...</h1>}>
+            <QueryClientProvider client={client}>
+              <Suspense fallback={<h1>Loading ...</h1>}>
+                <RequireAuth>
                   <Dashboard />
-                </Suspense>
-              </QueryClientProvider>
-            </RequireAuth>
+                </RequireAuth>
+              </Suspense>
+            </QueryClientProvider>
           }
         ></Route>
         <Route path="/*" element={<NotFound />}></Route>

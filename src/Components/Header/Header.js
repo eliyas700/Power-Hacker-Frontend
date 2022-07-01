@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../Assets/Images/logo.png";
 import { Link } from "react-router-dom";
 const Header = () => {
+  const [haveToken, setHaveToken] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      setHaveToken(true);
+    }
+  }, []);
+  const handleSignOut = () => {
+    localStorage.removeItem("accessToken");
+    setHaveToken(false);
+  };
+
   const menuItems = (
     <>
       <li className="text-lg  font-semibold text-white">
@@ -14,9 +27,15 @@ const Header = () => {
       <li className="text-lg font-semibold text-white">
         <Link to="/contact">Contact Us</Link>
       </li>
-      <li className="text-lg font-semibold text-white">
-        <label for="signInModal">Log In</label>
-      </li>
+      {haveToken ? (
+        <li className="text-lg font-semibold text-white">
+          <button onClick={handleSignOut}>Sign Out</button>
+        </li>
+      ) : (
+        <li className="text-lg font-semibold text-white">
+          <label for="signInModal">Log In</label>
+        </li>
+      )}
     </>
   );
   return (

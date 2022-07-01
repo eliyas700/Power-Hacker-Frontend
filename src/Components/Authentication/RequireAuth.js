@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useNavigate, useLocation } from "react-router-dom";
 const RequireAuth = ({ children }) => {
   let location = useLocation();
   const token = localStorage.getItem("accessToken");
