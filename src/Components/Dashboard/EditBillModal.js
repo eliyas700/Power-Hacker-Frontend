@@ -26,7 +26,6 @@ const EditBillModal = ({ editBill, refetch }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.success) {
           toast.success(`${editBill?._id} Updated Successfully!`);
           // refetch();

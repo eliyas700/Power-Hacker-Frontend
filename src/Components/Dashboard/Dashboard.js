@@ -30,7 +30,6 @@ const Dashboard = () => {
       .then((res) => res.json())
       .then((data) => setData(data));
   }, [data, pages]);
-  console.log(data, "data from dashboard");
 
   let sum = 0;
 
@@ -39,7 +38,6 @@ const Dashboard = () => {
       sum += parseInt(element?.bill);
     });
   }
-  console.log(sum);
 
   const [search, setSearch] = useState("");
 
@@ -51,7 +49,7 @@ const Dashboard = () => {
         item.phone.toLowerCase().includes(search)
     );
   };
-  console.log(search);
+
   return (
     <div className="w-[96%] mx-auto my-4 shadow-lg mini-h-[90vh] border-2">
       <div className="flex justify-between items-center bg-[#95a5a6]">

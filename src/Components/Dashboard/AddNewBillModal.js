@@ -14,7 +14,6 @@ const AddNewBillModal = ({ refetch }) => {
     const email = data?.email;
     const phoneNumber = data?.number;
     const bill = data?.amount;
-    console.log(name, email, phoneNumber, bill);
 
     const billInfo = {
       name: name,
