@@ -12,32 +12,21 @@ const Login = () => {
     handleSubmit,
   } = useForm();
   const onSubmit = (data, event) => {
-    const name = data?.name;
     const email = data?.email;
-    const phoneNumber = data?.number;
-    const bill = data?.amount;
-    console.log(name, email, phoneNumber, bill);
+    const password = data?.password;
+    console.log(password, email);
+    const user = { email, password };
 
-    const billInfo = {
-      name: name,
-      email: email,
-      phone: phoneNumber,
-      bill: bill,
-    };
-    fetch("http://localhost:5000/api/add-billing", {
+    fetch(`http://localhost:5000/login`, {
       method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(billInfo),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
     })
-      .then((res) => res.json())
+      .then((response) => response.json())
       .then((data) => {
-        if (data.acknowledged) {
-          toast.success(`New Bill Added Successfully.`);
-          // refetch();
-          event.target.reset();
-        } else {
-          toast.error(`Sorry ! Something went wrong .Try Again`);
-        }
+        console.log(data);
       });
   };
   return (

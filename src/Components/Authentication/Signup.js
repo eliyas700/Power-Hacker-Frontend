@@ -22,7 +22,10 @@ const Signup = ({ setSignIn, setSignUp }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        if (data.acknowledged) {
+          toast.success("User Created Successfully");
+          event.target.reset();
+        }
       });
   };
   return (
