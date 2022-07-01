@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const useToken = (user) => {
   const [token, setToken] = useState("");
-  console.log(user, "from token");
+
   !user && localStorage.removeItem("accessToken");
   useEffect(() => {
     const email = user?.email;
