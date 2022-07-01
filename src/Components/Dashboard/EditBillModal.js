@@ -16,7 +16,7 @@ const EditBillModal = ({ editBill, refetch }) => {
     };
     const id = editBill?._id;
     //Send Data to the Server Site
-    const url = `http://localhost:5000/api/update-billing/${id}`;
+    const url = `https://arrogant-inukshuk-10910.herokuapp.com/api/update-billing/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {

@@ -2,9 +2,12 @@ import React from "react";
 import { toast } from "react-toastify";
 const DeleteBillModal = ({ refetch, editBill }) => {
   const handleDelete = async (id) => {
-    const res = await fetch(`http://localhost:5000/api/delete-billing/${id}`, {
-      method: "DELETE",
-    });
+    const res = await fetch(
+      `https://arrogant-inukshuk-10910.herokuapp.com/api/delete-billing/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
     const result = await res.json();
     if (result?.success) {
       // refetch();

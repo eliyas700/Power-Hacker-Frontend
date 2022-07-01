@@ -3,7 +3,7 @@
 // const getBillings = async () => {
 
 //   useEffect(() => {
-//     fetch("http://localhost:5000/api/billing-list");
+//     fetch("https://arrogant-inukshuk-10910.herokuapp.com/api/billing-list");
 //   }, [bills]);
 // };
 // export default getBillings;

@@ -22,7 +22,7 @@ const AddNewBillModal = ({ refetch }) => {
       phone: phoneNumber,
       bill: bill,
     };
-    fetch("http://localhost:5000/api/add-billing", {
+    fetch("https://arrogant-inukshuk-10910.herokuapp.com/api/add-billing", {
       method: "POST",
       headers: {
         "content-type": "application/json",

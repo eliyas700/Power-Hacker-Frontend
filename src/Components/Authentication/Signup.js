@@ -13,7 +13,7 @@ const Signup = ({ setSignIn, setSignUp }) => {
     const email = data?.email;
     const password = data?.password;
     const user = { name, email, password };
-    fetch(`http://localhost:5000/registration`, {
+    fetch(`https://arrogant-inukshuk-10910.herokuapp.com/registration`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

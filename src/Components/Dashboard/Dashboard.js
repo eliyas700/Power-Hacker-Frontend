@@ -13,7 +13,9 @@ const Dashboard = () => {
   const [pagesCount, setPagesCount] = useState(0);
   const [pages, setPages] = useState(0);
   useEffect(() => {
-    fetch("http://localhost:5000/api/billing-pagination")
+    fetch(
+      "https://arrogant-inukshuk-10910.herokuapp.com/api/billing-pagination"
+    )
       .then((res) => res.json())
       .then((data) => {
         const pages = Math.ceil(data?.count / 10);
@@ -22,7 +24,9 @@ const Dashboard = () => {
   }, [pages, data]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/billing-list?page=${pages}`)
+    fetch(
+      `https://arrogant-inukshuk-10910.herokuapp.com/api/billing-list?page=${pages}`
+    )
       .then((res) => res.json())
       .then((data) => setData(data));
   }, [data, pages]);

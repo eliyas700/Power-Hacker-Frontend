@@ -23,7 +23,7 @@ const Login = () => {
     console.log(password, email);
     const user = { email, password };
 
-    fetch(`http://localhost:5000/login`, {
+    fetch(`https://arrogant-inukshuk-10910.herokuapp.com/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
